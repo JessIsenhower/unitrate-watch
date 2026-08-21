@@ -1,0 +1,84 @@
+name: Submit UnitRate Watch URLs to IndexNow
+
+on:
+  workflow_run:
+    workflows:
+      - Deploy UnitRate Watch to GitHub Pages
+    types:
+      - completed
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  submit:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout published source
+        uses: actions/checkout@v6
+        with:
+          ref: main
+
+      - name: Submit sitemap URLs to IndexNow
+        env:
+          INDEXNOW_KEY: 4327a3aa889847194db4263502660a44
+          SITE_HOST: jessisenhower.github.io
+          SITE_PATH_PREFIX: /unitrate-watch/
+          KEY_LOCATION: https://jessisenhower.github.io/unitrate-watch/4327a3aa889847194db4263502660a44.txt
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import os
+          import urllib.error
+          import urllib.parse
+          import urllib.request
+          import xml.etree.ElementTree as ET
+
+          root = ET.parse("sitemap.xml").getroot()
+          namespace = {"sm": "http://www.sitemaps.org/schemas/sitemap/0.9"}
+          urls = [
+              node.text.strip()
+              for node in root.findall(".//sm:loc", namespace)
+              if node.text and node.text.strip()
+          ]
+
+          host = os.environ["SITE_HOST"]
+          path_prefix = os.environ["SITE_PATH_PREFIX"]
+          valid_urls = []
+          for url in urls:
+              parsed = urllib.parse.urlparse(url)
+              if parsed.scheme != "https" or parsed.hostname != host or not parsed.path.startswith(path_prefix):
+                  raise SystemExit(f"Refusing unexpected sitemap URL: {url}")
+              valid_urls.append(url)
+
+          if not valid_urls:
+              raise SystemExit("No URLs found in sitemap.xml")
+
+          payload = {
+              "host": host,
+              "key": os.environ["INDEXNOW_KEY"],
+              "keyLocation": os.environ["KEY_LOCATION"],
+              "urlList": valid_urls,
+          }
+          request = urllib.request.Request(
+              "https://api.indexnow.org/indexnow",
+              data=json.dumps(payload).encode("utf-8"),
+              headers={"Content-Type": "application/json; charset=utf-8"},
+              method="POST",
+          )
+
+          try:
+              with urllib.request.urlopen(request, timeout=30) as response:
+                  status = response.getcode()
+          except urllib.error.HTTPError as error:
+              body = error.read().decode("utf-8", errors="replace")
+              raise SystemExit(f"IndexNow submission failed: HTTP {error.code}: {body}") from error
+
+          if status not in (200, 202):
+              raise SystemExit(f"IndexNow submission returned unexpected HTTP {status}")
+
+          print(f"Submitted {len(valid_urls)} URLs to IndexNow (HTTP {status}).")
+          PY
