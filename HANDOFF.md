@@ -45,60 +45,27 @@ UnitRate Watch is a consumer self-storage price-transparency utility for renters
 
 The user should **not** have to research competitor rates before using the product.
 
-### Minimum customer input
-
-- Current facility or ZIP code
-- Unit size
-- Unit type / relevant attributes
-- Current monthly base rent
-- Previous rent, if there was an increase
-- Rate-increase notice is optional
-
-### UnitRate Watch does the hard work
-
-- Find current publicly advertised rates where available
-- Compare the renter's current facility first, then relevant nearby alternatives
-- Normalize obvious differences such as unit size, climate control, access, floor, promotions, fees, and availability
-- State uncertainty instead of pretending listings are perfectly comparable
-- Return a **stay / negotiate / switch** recommendation with evidence
-
 ## Current product
 
-### Live homepage
+Live homepage includes a rate-hike calculator, annual impact, market-check signal, anonymous free scan form, private status link after submission, and operator policy/guide links.
 
-Includes:
-
-- rate-hike calculator
-- annual cost impact
-- market-check signal
-- anonymous free scan form
-- private status link after submission
-- operator policy/guide links
-
-### High-intent operator pages
-
+High-intent operator pages:
 - `extra-space-storage-rate-increase.html`
 - `public-storage-rent-increase.html`
 - `cubesmart-rent-increase.html`
 
-### Broader acquisition pages
-
+Broader acquisition pages:
 - `storage-unit-rent-increase.html`
 - `storage-price-lock.html`
 - `nyc-extra-space-settlement.html`
 
 ## Experiment thresholds
 
-### Success
+**Success:** 8 qualified scan requests from the first 100 relevant visitors, and at least 2 scans lead to a concrete negotiate or switch action.
 
-- **8 qualified scan requests from the first 100 relevant visitors**, and
-- at least **2 scans lead to a concrete negotiate or switch action**
+**Failure:** 200 relevant visitors with fewer than 3 qualified scan requests.
 
-### Failure
-
-- **200 relevant visitors with fewer than 3 qualified scan requests**
-
-If the post-hike scan fails, test **pre-rental price stability / predictability** as the primary job before abandoning the market.
+If the post-hike scan fails, test pre-rental price stability / predictability before abandoning the market.
 
 ## Scoreboard
 
@@ -136,18 +103,18 @@ Issue #21 is complete. `DATABASE_URL` is configured as a sensitive Vercel enviro
 
 ## Next moves, in order
 
-1. **Read the first real Vercel Analytics baseline** and track relevant visitors from this point forward.
-2. **Verify search discovery/indexing** on the Vercel URLs; improve only useful internal links or metadata if evidence supports it.
-3. **Acquire the first 100 relevant visitors ethically.** No spam, fake accounts, fake testimonials, or manufactured community participation.
-4. **Check Neon for new scan submissions** without creating test/fake requests.
-5. **Fulfill the first scans manually / AI-assisted** and write results back to the private status page.
-6. **Track scan outcomes.** Did the renter stay, negotiate, or switch? What evidence changed the decision?
-7. **Automate repeated research only after pattern evidence.**
-8. **Apply for one approved referral/affiliate program only after switch intent is demonstrated.** Disclose every commercial relationship clearly.
+1. Read the first real Vercel Analytics baseline and track relevant visitors from this point forward.
+2. Verify search discovery/indexing on the Vercel URLs; improve only useful internal links or metadata if evidence supports it.
+3. Acquire the first 100 relevant visitors ethically. No spam, fake accounts, fake testimonials, or manufactured community participation.
+4. Check Neon for new scan submissions without creating test/fake requests.
+5. Fulfill the first scans manually / AI-assisted and write results back to the private status page.
+6. Track scan outcomes: stay, negotiate, or switch, and what evidence changed the decision.
+7. Automate repeated research only after pattern evidence.
+8. Apply for one approved referral/affiliate program only after switch intent is demonstrated.
 
 ## Operating guardrails
 
-- Initial operating treasury remains **$0**.
+- Initial operating treasury remains $0.
 - Do not buy a domain, API, dataset, ads, or software without explicit human approval.
 - Do not socialize the owner-named GitHub Pages URL; use `https://unitrate-watch.vercel.app` publicly.
 - Keep database credentials only in secure environment-variable storage; never commit them to GitHub or place them in public HTML.
@@ -161,13 +128,11 @@ Issue #21 is complete. `DATABASE_URL` is configured as a sensitive Vercel enviro
 - Do not scrape sources whose terms prohibit it.
 - Prefer operator-owned public pages, approved partner feeds, licensed data, and voluntary user submissions.
 - Do not fabricate customers, testimonials, savings, rate histories, or rankings.
-- Do not create a "fairness score" until the underlying dataset can support one.
+- Do not create a fairness score until the underlying dataset can support one.
 
 ## Monetization
 
-Current product is free.
-
-The first monetization hypothesis is **clearly disclosed referral / affiliate revenue when a renter independently decides switching is worthwhile**. UnitRate Watch should not create fake urgency or steer users toward switching solely because a partner pays a commission.
+Current product is free. First monetization hypothesis is clearly disclosed referral / affiliate revenue only when a renter independently decides switching is worthwhile.
 
 ## Restart instruction
 
