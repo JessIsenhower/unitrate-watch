@@ -1,4 +1,27 @@
 User-agent: *
 Allow: /
 
+# Search and user-directed AI retrieval
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+# Keep answer-engine visibility separate from model-training crawls
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
 Sitemap: https://unitrate-watch.vercel.app/sitemap.xml
