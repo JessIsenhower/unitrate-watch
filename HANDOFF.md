@@ -5,14 +5,30 @@ _Last updated: August 20, 2026 (CT)_
 ## Status
 
 **Stage:** Live beta / acquisition validation  
-**Current constraint:** Qualified traffic and measurement, not product development.  
+**Current constraint:** Reconcile the Vercel production source with newer acquisition/indexing work, then measure qualified traffic. Do **not** expand product scope.  
 **Spend to date:** $0  
 **Revenue:** $0  
 **Treasury:** $0
 
-- Repository: https://github.com/JessIsenhower/unitrate-watch
-- Live site: https://jessisenhower.github.io/unitrate-watch/
-- Beta intake: public GitHub Issues via `.github/ISSUE_TEMPLATE/rate-scan.yml`
+- Repository/source work: https://github.com/JessIsenhower/unitrate-watch
+- **Public production site:** https://unitrate-watch.vercel.app/
+- Vercel project: `unitrate-watch` in team `UnitRate Watch`
+- **Do not socialize the owner-named GitHub Pages URL.** GitHub is source/operations, not the public brand URL.
+- Production beta intake is an anonymous on-site form posting to `/api/scan`; visitors do not need a GitHub account, name, or email.
+
+## Important deployment state
+
+The public Vercel deployment is **not currently a mirror of GitHub `main`**.
+
+As verified August 20, 2026 CT:
+
+- Vercel production is live and healthy at `https://unitrate-watch.vercel.app/`.
+- The live Vercel homepage includes the rate-hike calculator plus an anonymous on-site scan form that posts to `/api/scan`.
+- The latest Vercel build downloaded only three deployment files, indicating it was deployed separately from the fuller GitHub site source.
+- The newer operator pages, broader acquisition pages, sitemap, robots file, and IndexNow key/workflow exist in GitHub source but are **not yet present on the public Vercel deployment**; `/sitemap.xml` returned 404 when checked.
+- Therefore, **do not deploy GitHub `main` over Vercel blindly**. Doing so would regress the anonymous intake back to the GitHub-Issues CTA currently present in the GitHub homepage source.
+
+The next production deployment must preserve the anonymous Vercel form/API while adding the newer acquisition and indexing assets.
 
 ## Business
 
@@ -50,7 +66,7 @@ UnitRate Watch scored highest because it combines:
 - visible and measurable consumer pain
 - a large installed renter base with meaningful switching friction
 - high-intent search behavior around rate increases
-- a $0 static-site MVP
+- a $0 MVP
 - a plausible referral/affiliate monetization path that can remain aligned with the renter
 - relatively open product whitespace around **existing-customer rate drift**, rather than generic storage discovery
 - a future data moat from longitudinal, anonymized rate histories and operator price-stability behavior
@@ -59,44 +75,42 @@ AI is an operating/product advantage, **not the customer promise**.
 
 ## Current product
 
-### Homepage
+### Live Vercel production
 
-`index.html`
-
-Includes:
+The current public homepage includes:
 
 - rate-hike calculator
 - annual cost impact
 - market-check signal
-- free concierge scan CTA
-- operator policy summaries
+- anonymous free scan form
+- `/api/scan` submission endpoint
+- no visitor-facing GitHub requirement
 
-### High-intent operator pages
+### Newer acquisition work in GitHub source, not yet reconciled into Vercel
+
+High-intent operator pages:
 
 - `extra-space-storage-rate-increase.html`
 - `public-storage-rent-increase.html`
 - `cubesmart-rent-increase.html`
 
-These target renters already searching after a specific operator raises their rent. Claims are tied to operator-published policy sources and avoid legal conclusions.
-
-### Broader acquisition pages
+Broader acquisition pages:
 
 - `storage-unit-rent-increase.html`
 - `storage-price-lock.html`
 - `nyc-extra-space-settlement.html`
 
-These widen discovery around the underlying problem, price predictability, and the July 2026 NYC / Extra Space settlement.
-
-### Trust / operating assets
+Trust/indexing assets:
 
 - `privacy.html`
 - `terms.html`
 - `AFFILIATE_PLAN.md`
 - `robots.txt`
 - `sitemap.xml`
-- `.nojekyll`
-- IndexNow verification key file at site root
-- `.github/workflows/indexnow.yml` for automatic post-deploy IndexNow submission
+- IndexNow verification key file
+- `.github/workflows/indexnow.yml`
+
+PR #18 corrected the GitHub sitemap, robots file, and IndexNow target so they use `https://unitrate-watch.vercel.app` rather than the owner-named GitHub Pages URL. Those changes still need to reach Vercel production as part of a safe reconciled deployment.
 
 ## Current acquisition hypothesis
 
@@ -134,12 +148,10 @@ If the post-hike scan fails, test **pre-rental price stability / predictability*
 
 ## Scoreboard
 
-As of this handoff:
-
 | Metric | Value |
 |---|---:|
 | Relevant visitors | Unknown — analytics not instrumented yet |
-| Qualified scan requests | 0 |
+| Qualified scan requests | 0 known |
 | Customers | 0 |
 | Revenue | $0 |
 | Expenses | $0 |
@@ -153,33 +165,31 @@ No conversion conclusions are valid until the visitor denominator exists.
 
 https://github.com/JessIsenhower/unitrate-watch/issues/6
 
-Broader rate-hike, price-stability, and NYC settlement pages are now live. Keep this experiment open until discovery/indexing has had a fair chance and there is measurable traffic.
+The acquisition pages are built in GitHub source but **not yet live on public Vercel production**. Keep this issue open through safe deployment, indexing, and a fair traffic test.
 
 ### Issue #7 — Analytics
 
 https://github.com/JessIsenhower/unitrate-watch/issues/7
 
-Need privacy-first traffic measurement. Cloudflare Web Analytics is the preferred current option because it is free, cookie-free, and can be added to a GitHub Pages site without moving DNS.
+The preferred first measurement option is now **Vercel Web Analytics**, because Vercel is the actual production host. Human action is required to enable it in the Vercel project dashboard.
 
 ### Search indexing
 
-- Sitemap is live and referenced in `robots.txt`.
-- IndexNow verification key is live at site root.
-- Automated IndexNow submission is configured in `.github/workflows/indexnow.yml` after successful GitHub Pages deploys, with manual dispatch available as a fallback (PR #17).
+- GitHub source now points `robots.txt`, `sitemap.xml`, and IndexNow at `https://unitrate-watch.vercel.app` (PR #18).
+- Public Vercel production does not yet expose those files, so indexing automation is not operational on the actual public site yet.
 - Google Search Console is not yet confirmed/configured.
-- A basic exact-name / site search immediately before PR #17 still showed no visible UnitRate Watch search result; this is discovery evidence, not a market-demand result.
-
-Do not confuse "not indexed yet" with market rejection. New pages need time and actual discovery signals.
+- Do not confuse "not indexed yet" with market rejection.
 
 ## Next moves, in order
 
-1. **Instrument traffic measurement.** We need a real visitor denominator before evaluating conversion.
-2. **Improve discovery, not product scope.** Ensure sitemap/indexing works and strengthen useful internal links between related pages.
-3. **Acquire the first 100 relevant visitors ethically.** No spam, fake accounts, fake testimonials, or manufactured community participation.
-4. **Fulfill the first scans manually / AI-assisted.** Learn which research steps are actually hard before automating them.
-5. **Track scan outcomes.** Did the renter stay, negotiate, or switch? What evidence changed the decision?
-6. **Automate repeated work only after pattern evidence.** Likely candidates: notice parsing, comparable-unit matching, promotion/fee normalization, and policy monitoring.
-7. **Apply for one approved referral/affiliate program only after switch intent is demonstrated.** Disclose every commercial relationship clearly.
+1. **Enable Vercel Web Analytics.** We need a real visitor denominator.
+2. **Recover/reconstruct the current Vercel production source before redeploying.** Preserve the anonymous form and `/api/scan` behavior.
+3. **Reconcile the newer GitHub acquisition/indexing assets into that Vercel-safe source.** Do not reintroduce the public GitHub-Issues intake.
+4. **Deploy the reconciled build to Vercel and verify** homepage, scan form, `/api/scan`, operator pages, broader acquisition pages, privacy/terms, `robots.txt`, `sitemap.xml`, and IndexNow key.
+5. **Acquire the first 100 relevant visitors ethically.** No spam, fake accounts, fake testimonials, or manufactured community participation.
+6. **Fulfill the first scans manually / AI-assisted** and track stay / negotiate / switch outcomes.
+7. **Automate repeated research only after pattern evidence.**
+8. **Apply for one approved referral/affiliate program only after switch intent is demonstrated.** Disclose every commercial relationship clearly.
 
 ## Future product path if demand is real
 
@@ -196,6 +206,9 @@ The potential moat is not the calculator and not "AI." It is a trustworthy longi
 
 - Initial operating treasury remains **$0**.
 - Do not buy a domain, API, dataset, ads, or software without explicit human approval.
+- Do not socialize the owner-named GitHub Pages URL; use `https://unitrate-watch.vercel.app` publicly.
+- Do not overwrite the current Vercel anonymous scan intake with the older GitHub-Issues intake.
+- When human action is required, provide the user a direct link to the exact page/tool needed.
 - Do not add AI features merely to make the site sound sophisticated.
 - Do not charge for basic rate checking during validation.
 - Do not claim a large rent increase is illegal merely because it is large.
@@ -205,7 +218,7 @@ The potential moat is not the calculator and not "AI." It is a trustworthy longi
 - Prefer operator-owned public pages, approved partner feeds, licensed data, and voluntary user submissions.
 - Do not fabricate customers, testimonials, savings, rate histories, or rankings.
 - Do not create a "fairness score" until the underlying dataset can support one.
-- Do not expand product scope simply because traffic is slow. First determine whether the problem is indexing, acquisition, trust, intake friction, or weak demand.
+- Do not expand product scope simply because traffic is slow. First determine whether the problem is deployment, indexing, acquisition, trust, intake friction, or weak demand.
 
 ## Monetization
 
@@ -238,9 +251,10 @@ Do not preserve UnitRate Watch because work has already been invested in it.
 When resuming autonomous operation:
 
 1. Read this file first.
-2. Check open issues and latest merged commits.
-3. Check for new rate-scan issues before building anything.
-4. Review available traffic/indexing evidence.
-5. Identify the single highest-leverage constraint.
-6. Execute one zero-cost action against that constraint.
-7. Update this handoff only when strategy, thresholds, product state, monetization, or a major operating constraint materially changes.
+2. Verify the live Vercel deployment before assuming GitHub source is production.
+3. Check open issues and latest merged commits.
+4. Check for new scan submissions without creating test/fake submissions.
+5. Review traffic/indexing evidence.
+6. Identify the single highest-leverage constraint.
+7. Execute one zero-cost action against that constraint.
+8. Update this handoff only when strategy, thresholds, product state, monetization, deployment state, or a major operating constraint materially changes.
