@@ -5,7 +5,7 @@ _Last updated: August 20, 2026 (CT)_
 ## Status
 
 **Stage:** Live beta / acquisition validation  
-**Current constraint:** Reconcile the Vercel production source with newer acquisition/indexing work, then measure qualified traffic. Do **not** expand product scope.  
+**Current constraint:** Reconcile the Vercel production source with newer acquisition/indexing work, add the Vercel Web Analytics script, then measure qualified traffic. Do **not** expand product scope.  
 **Spend to date:** $0  
 **Revenue:** $0  
 **Treasury:** $0
@@ -26,9 +26,10 @@ As verified August 20, 2026 CT:
 - The live Vercel homepage includes the rate-hike calculator plus an anonymous on-site scan form that posts to `/api/scan`.
 - The latest Vercel build downloaded only three deployment files, indicating it was deployed separately from the fuller GitHub site source.
 - The newer operator pages, broader acquisition pages, sitemap, robots file, and IndexNow key/workflow exist in GitHub source but are **not yet present on the public Vercel deployment**; `/sitemap.xml` returned 404 when checked.
+- Vercel Web Analytics was enabled in the project dashboard by the human operator on August 20, 2026 CT. However, the current static HTML response does **not** include the Vercel Analytics client script, so visit collection is not considered operational until the script is added and a new Vercel deployment is verified.
 - Therefore, **do not deploy GitHub `main` over Vercel blindly**. Doing so would regress the anonymous intake back to the GitHub-Issues CTA currently present in the GitHub homepage source.
 
-The next production deployment must preserve the anonymous Vercel form/API while adding the newer acquisition and indexing assets.
+The next production deployment must preserve the anonymous Vercel form/API while adding the analytics script plus the newer acquisition and indexing assets.
 
 ## Business
 
@@ -150,7 +151,7 @@ If the post-hike scan fails, test **pre-rental price stability / predictability*
 
 | Metric | Value |
 |---|---:|
-| Relevant visitors | Unknown — analytics not instrumented yet |
+| Relevant visitors | Unknown — analytics dashboard enabled but client script not yet deployed |
 | Qualified scan requests | 0 known |
 | Customers | 0 |
 | Revenue | $0 |
@@ -171,7 +172,7 @@ The acquisition pages are built in GitHub source but **not yet live on public Ve
 
 https://github.com/JessIsenhower/unitrate-watch/issues/7
 
-The preferred first measurement option is now **Vercel Web Analytics**, because Vercel is the actual production host. Human action is required to enable it in the Vercel project dashboard.
+Vercel Web Analytics is enabled in the project dashboard. For this static HTML deployment, the client script still needs to be added to the live page and redeployed before visit collection can be considered verified.
 
 ### Search indexing
 
@@ -182,10 +183,10 @@ The preferred first measurement option is now **Vercel Web Analytics**, because 
 
 ## Next moves, in order
 
-1. **Enable Vercel Web Analytics.** We need a real visitor denominator.
-2. **Recover/reconstruct the current Vercel production source before redeploying.** Preserve the anonymous form and `/api/scan` behavior.
+1. **Recover/reconstruct the current Vercel production source before redeploying.** Preserve the anonymous form and `/api/scan` behavior.
+2. **Add the Vercel Web Analytics script** to the static HTML source.
 3. **Reconcile the newer GitHub acquisition/indexing assets into that Vercel-safe source.** Do not reintroduce the public GitHub-Issues intake.
-4. **Deploy the reconciled build to Vercel and verify** homepage, scan form, `/api/scan`, operator pages, broader acquisition pages, privacy/terms, `robots.txt`, `sitemap.xml`, and IndexNow key.
+4. **Deploy the reconciled build to Vercel and verify** homepage, analytics script, scan form, `/api/scan`, operator pages, broader acquisition pages, privacy/terms, `robots.txt`, `sitemap.xml`, and IndexNow key.
 5. **Acquire the first 100 relevant visitors ethically.** No spam, fake accounts, fake testimonials, or manufactured community participation.
 6. **Fulfill the first scans manually / AI-assisted** and track stay / negotiate / switch outcomes.
 7. **Automate repeated research only after pattern evidence.**
