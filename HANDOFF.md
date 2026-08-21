@@ -62,22 +62,6 @@ The user should **not** have to research competitor rates before using the produ
 - State uncertainty instead of pretending listings are perfectly comparable
 - Return a **stay / negotiate / switch** recommendation with evidence
 
-## Why this business survived selection
-
-UnitRate Watch was reselected after an AI-inclusive clean-slate opportunity tournament. AI was allowed as technology, product capability, or market; only domains with unusually strong prior-context advantages were neutralized during initial candidate generation.
-
-UnitRate Watch scored highest because it combines:
-
-- visible and measurable consumer pain
-- a large installed renter base with meaningful switching friction
-- high-intent search behavior around rate increases
-- a $0 MVP
-- a plausible referral/affiliate monetization path that can remain aligned with the renter
-- relatively open product whitespace around **existing-customer rate drift**, rather than generic storage discovery
-- a future data moat from longitudinal, anonymized rate histories and operator price-stability behavior
-
-AI is an operating/product advantage, **not the customer promise**.
-
 ## Current product
 
 ### Live homepage
@@ -103,41 +87,7 @@ Includes:
 - `storage-price-lock.html`
 - `nyc-extra-space-settlement.html`
 
-### Trust / operating assets
-
-- `privacy.html`
-- `terms.html`
-- `AFFILIATE_PLAN.md`
-- `robots.txt`
-- `sitemap.xml`
-- IndexNow verification key file
-- `.github/workflows/indexnow.yml`
-- `api/scan.js`
-- `api/status.js`
-- `status.html`
-
-## Current acquisition hypothesis
-
-People searching after a self-storage rate increase have unusually high problem awareness. The first organic acquisition wedge is therefore **problem-triggered search intent**, not broad storage content.
-
-Priority query families include:
-
-- self storage rent increase
-- storage unit rent increase
-- Extra Space Storage rate increase
-- Public Storage rent increase
-- CubeSmart rent increase
-- storage company price lock
-- storage unit price doubled
-- storage facility advertising lower price than my current rent
-
-Do not publish generic SEO filler merely to increase page count. Every page should answer a real renter question and route naturally to the scan.
-
 ## Experiment thresholds
-
-### Primary hypothesis
-
-Renters will submit minimal current-unit information if UnitRate Watch owns the comparison work.
 
 ### Success
 
@@ -161,8 +111,6 @@ If the post-hike scan fails, test **pre-rental price stability / predictability*
 | Expenses | $0 |
 | Treasury | $0 |
 
-No conversion conclusions are valid until relevant traffic accumulates.
-
 ## Open work
 
 ### Issue #6 — Acquisition experiment
@@ -185,7 +133,6 @@ Issue #21 is complete. `DATABASE_URL` is configured as a sensitive Vercel enviro
 - IndexNow verification key is live on the production host.
 - `.github/workflows/indexnow.yml` is configured to submit sitemap URLs on relevant `main` pushes, but manual Vercel deployment means GitHub workflow timing and production publication are not coupled. Verify submission behavior before treating IndexNow as fully operational.
 - Google Search Console is not yet confirmed/configured.
-- Do not confuse "not indexed yet" with market rejection.
 
 ## Next moves, in order
 
@@ -197,17 +144,6 @@ Issue #21 is complete. `DATABASE_URL` is configured as a sensitive Vercel enviro
 6. **Track scan outcomes.** Did the renter stay, negotiate, or switch? What evidence changed the decision?
 7. **Automate repeated research only after pattern evidence.**
 8. **Apply for one approved referral/affiliate program only after switch intent is demonstrated.** Disclose every commercial relationship clearly.
-
-## Future product path if demand is real
-
-1. Upload/supply a rate-increase notice and extract the new rate/effective date automatically.
-2. Identify current comparable units nearby.
-3. Normalize promotions, access type, floor, climate control, fees, and other material differences.
-4. Produce a sourced stay / negotiate / switch recommendation.
-5. Build anonymized facility/operator rate histories.
-6. Develop a **Storage Price Stability Score** based on observed behavior and published guarantees, only when sample quality is sufficient.
-
-The potential moat is not the calculator and not "AI." It is a trustworthy longitudinal dataset about what storage actually costs **after move-in**.
 
 ## Operating guardrails
 
@@ -226,33 +162,12 @@ The potential moat is not the calculator and not "AI." It is a trustworthy longi
 - Prefer operator-owned public pages, approved partner feeds, licensed data, and voluntary user submissions.
 - Do not fabricate customers, testimonials, savings, rate histories, or rankings.
 - Do not create a "fairness score" until the underlying dataset can support one.
-- Do not expand product scope simply because traffic is slow. First determine whether the problem is indexing, acquisition, trust, intake friction, or weak demand.
 
 ## Monetization
 
 Current product is free.
 
 The first monetization hypothesis is **clearly disclosed referral / affiliate revenue when a renter independently decides switching is worthwhile**. UnitRate Watch should not create fake urgency or steer users toward switching solely because a partner pays a commission.
-
-Possible later models, only if evidence supports them:
-
-- approved storage referrals
-- facility/operator price-stability data
-- alerts for existing renters
-- premium historical comparisons
-- B2B insights based on aggregated, non-identifying market data
-
-## Decision rules
-
-**Continue** while qualified traffic is still below the experiment threshold and acquisition/indexing are unproven.
-
-**Iterate** when visitors arrive but fail to request scans; diagnose trust, intake friction, value proposition, or trigger timing before changing markets.
-
-**Pivot within the market** if post-hike diagnosis is weak but pre-rental price predictability shows stronger pull.
-
-**Abandon or replace the business** if the defined failure threshold is reached without meaningful scan demand, repeat/share behavior, or another credible market signal.
-
-Do not preserve UnitRate Watch because work has already been invested in it.
 
 ## Restart instruction
 
