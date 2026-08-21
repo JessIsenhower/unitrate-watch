@@ -1,11 +1,14 @@
 name: Submit UnitRate Watch URLs to IndexNow
 
 on:
-  workflow_run:
-    workflows:
-      - Deploy UnitRate Watch to GitHub Pages
-    types:
-      - completed
+  push:
+    branches:
+      - main
+    paths:
+      - '*.html'
+      - 'sitemap.xml'
+      - 'robots.txt'
+      - '4327a3aa889847194db4263502660a44.txt'
   workflow_dispatch:
 
 permissions:
@@ -13,10 +16,9 @@ permissions:
 
 jobs:
   submit:
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout published source
+      - name: Checkout production source
         uses: actions/checkout@v6
         with:
           ref: main
@@ -24,9 +26,9 @@ jobs:
       - name: Submit sitemap URLs to IndexNow
         env:
           INDEXNOW_KEY: 4327a3aa889847194db4263502660a44
-          SITE_HOST: jessisenhower.github.io
-          SITE_PATH_PREFIX: /unitrate-watch/
-          KEY_LOCATION: https://jessisenhower.github.io/unitrate-watch/4327a3aa889847194db4263502660a44.txt
+          SITE_HOST: unitrate-watch.vercel.app
+          SITE_PATH_PREFIX: /
+          KEY_LOCATION: https://unitrate-watch.vercel.app/4327a3aa889847194db4263502660a44.txt
         run: |
           set -euo pipefail
           python - <<'PY'

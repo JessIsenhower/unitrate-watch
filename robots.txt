@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jessisenhower.github.io/unitrate-watch/sitemap.xml
+Sitemap: https://unitrate-watch.vercel.app/sitemap.xml
