@@ -96,6 +96,7 @@ These widen discovery around the underlying problem, price predictability, and t
 - `sitemap.xml`
 - `.nojekyll`
 - IndexNow verification key file at site root
+- `.github/workflows/indexnow.yml` for automatic post-deploy IndexNow submission
 
 ## Current acquisition hypothesis
 
@@ -164,8 +165,9 @@ Need privacy-first traffic measurement. Cloudflare Web Analytics is the preferre
 
 - Sitemap is live and referenced in `robots.txt`.
 - IndexNow verification key is live at site root.
-- Automated IndexNow submissions are **not** currently configured.
+- Automated IndexNow submission is configured in `.github/workflows/indexnow.yml` after successful GitHub Pages deploys, with manual dispatch available as a fallback (PR #17).
 - Google Search Console is not yet confirmed/configured.
+- A basic exact-name / site search immediately before PR #17 still showed no visible UnitRate Watch search result; this is discovery evidence, not a market-demand result.
 
 Do not confuse "not indexed yet" with market rejection. New pages need time and actual discovery signals.
 
