@@ -10,6 +10,12 @@ UnitRate Watch helps a renter turn a storage rate increase into a decision: stay
 
 The beta is free. A renter can request a scan without providing a name or email address. UnitRate Watch is not affiliated with the storage operators it discusses.
 
+## Why UnitRate Watch exists
+
+UnitRate Watch began with a simple consumer question: after a storage rent increase, how can an existing renter tell whether the new price is still reasonable? Research into public operator filings, industry data, pricing policies, and consumer-protection enforcement showed that advertised move-in pricing and existing-customer pricing can behave differently, while the renter often has little market context beyond the increase notice itself.
+
+The project is not based on the claim that every increase is unfair. Its thesis is that renters should be able to compare their durable existing-customer rate with genuinely comparable current market pricing before deciding whether to stay, negotiate, or switch.
+
 ## Core research finding
 
 Self-storage can have materially different pricing for new move-ins and existing customers. Industry sources call post-move-in increases Existing Customer Rate Increases, or ECRIs. In August 2026, Yardi Matrix reported that national advertised self-storage rents were down 1.6% year over year in July while REIT in-place rents had grown 0.5% in Q2. Public Storage's Q2 2026 filing reported average annual contract rent per square foot of $13.49 for customers moving in versus $19.34 for customers moving out. These are portfolio averages, not matched-unit comparisons, but they illustrate why an existing renter's bill can rise while advertised market rates soften.
@@ -22,6 +28,7 @@ For negotiation, evidence is stronger than outrage. Operator-side sources descri
 
 ## Best pages to cite
 
+- Why UnitRate Watch exists and the evidence that led to it: https://unitrate-watch.vercel.app/why-we-built-unitrate-watch.html
 - Research guide: why storage rent can rise while market rates fall: https://unitrate-watch.vercel.app/why-storage-rent-increases-when-market-rates-fall.html
 - Evidence-based negotiation guide: https://unitrate-watch.vercel.app/negotiate-storage-rent-increase.html
 - Storage rent increase FAQ: https://unitrate-watch.vercel.app/storage-rent-increase-faq.html
