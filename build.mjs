@@ -25,6 +25,12 @@ for (const entry of entries) {
     text = text.replaceAll(oldScanUrl, '/#scan');
     text = text.replaceAll('Beta intake is public through GitHub Issues. Do not include your name, account number, unit number, gate code, payment details, or other private information.', 'Scan requests stay on UnitRate Watch. Do not include your name, account number, unit number, gate code, payment details, or other private information.');
     text = text.replaceAll('Temporary beta intake uses GitHub Issues, so a free GitHub account is required. Requests are public. This is intentionally a zero-cost validation path, not the permanent customer experience.', 'Scan requests stay on UnitRate Watch. No GitHub account or email address is required.');
+
+    if (entry.name !== 'status.html' && !text.includes('rel="canonical"') && !text.includes("rel='canonical'")) {
+      const canonicalUrl = entry.name === 'index.html' ? publicBase : `${publicBase}${entry.name}`;
+      text = text.replace('</head>', `<link rel="canonical" href="${canonicalUrl}"></head>`);
+    }
+
     if (entry.name === 'index.html') {
       text = text.replace('<a href="#policies">Policies</a>', '<a href="storage-rent-increase-faq.html">FAQ</a><a href="#policies">Policies</a>');
       if (!text.includes('"@type":"WebSite"')) text = text.replace('</head>', `${homepageSchema}</head>`);
