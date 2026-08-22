@@ -5,135 +5,76 @@ _Last updated: August 21, 2026 (CT)_
 ## Status
 
 **Stage:** Live beta / acquisition validation  
-**Current constraint:** Discovery and qualified traffic. Product intake, analytics, database persistence, public deployment, SEO foundation, and answer-engine discovery assets are operational.  
-**Spend to date:** $0  
-**Revenue:** $0  
-**Treasury:** $0
+**Current constraint:** Discovery and qualified traffic. Product intake, analytics, Neon persistence, SEO/AEO assets, and public deployment are operational.  
+**Spend / revenue / treasury:** $0 / $0 / $0
 
-- Repository/source: https://github.com/JessIsenhower/unitrate-watch
-- **Public production site:** https://unitrate-watch.vercel.app/
-- Vercel project: `unitrate-watch` in team `UnitRate Watch`
+- Source: https://github.com/JessIsenhower/unitrate-watch
+- **Public production:** https://unitrate-watch.vercel.app/
+- Vercel project: `unitrate-watch`
 - Neon project: `UnitRate Watch`, database `neondb`
-- **Do not socialize the owner-named GitHub Pages URL.** GitHub is source/operations, not the public brand URL.
-- Production beta intake is an anonymous on-site form posting to `/api/scan`; visitors do not need a GitHub account, name, or email.
+- Do **not** socialize the owner-named GitHub Pages URL.
 
 ## Verified production state
 
-As verified August 21, 2026 CT:
+Verified August 21, 2026 CT after the latest deployment:
 
-- Vercel production is live at `https://unitrate-watch.vercel.app/`.
-- Homepage includes rate-hike calculator, anonymous scan intake, operator guides, FAQ navigation, WebSite/Organization structured data, and Vercel Web Analytics.
-- Scan requests persist to Neon Postgres through the restricted `unitrate_app` role using a sensitive Vercel `DATABASE_URL` targeted to Production and Preview.
-- Each scan receives an unguessable private status token and URL; no email is required.
-- Private status pages are `noindex,nofollow` and deliberately exclude analytics so secret token URLs are not transmitted.
-- `/api/status` reaches Neon correctly. A non-existent UUID returns 404 `Scan request not found`, which is the current non-destructive health check.
+- Styled homepage, calculator, anonymous scan form, FAQ navigation, structured data, and Vercel Analytics are live.
+- `/api/scan` writes to Neon through the restricted `unitrate_app` role using Vercel `DATABASE_URL`.
+- Each real scan receives an unguessable private status URL. No email is required.
+- Private status pages are `noindex,nofollow` and exclude analytics.
+- Read-only health check `/api/status?token=00000000-0000-0000-0000-000000000000` returns 404 `Scan request not found`, confirming Neon connectivity without creating fake customer data.
 - Current known real scan requests: **0**.
-- High-intent operator pages and broader acquisition pages are live on Vercel.
-- `robots.txt`, `sitemap.xml`, `llms.txt`, and the IndexNow verification key are live on the public Vercel host.
-- Canonical URLs point to Vercel, not the owner-named GitHub Pages address.
-- Production FAQ page is live at `storage-rent-increase-faq.html` with FAQ structured data.
-- `llms.txt` is live and identifies the best canonical pages to cite plus interpretation/sourcing guardrails.
-
-### AI / answer-engine crawler policy
-
-`robots.txt` explicitly allows search or user-directed retrieval crawlers including:
-
-- `OAI-SearchBot`
-- `ChatGPT-User`
-- `PerplexityBot`
-- `Claude-SearchBot`
-- `Claude-User`
-
-It explicitly blocks general model-training crawlers `GPTBot` and `ClaudeBot`. The intent is answer-engine visibility without automatically opting the site into model-training crawls.
+- `robots.txt`, `sitemap.xml`, `llms.txt`, and the IndexNow key are live on Vercel.
+- Canonical metadata is rewritten to `unitrate-watch.vercel.app` at build time.
+- AI search/user-retrieval crawlers are explicitly allowed; `GPTBot` and `ClaudeBot` training crawlers are blocked.
 
 ### Deployment caveat
 
-The GitHub repository has been connected to the Vercel project, but verified later pushes to `main` did **not** create a Vercel deployment or GitHub Vercel status check. Treat GitHub-to-Vercel auto-deployment as unreliable until proven otherwise.
+GitHub is connected to Vercel, but verified `main` pushes still do **not** create Vercel deployments or GitHub Vercel status checks. Treat auto-deploy as unreliable. Current reliable process is direct Vercel deployment with the **exact full GitHub source tree**, followed by explicit production verification.
 
-Current reliable production process is direct Vercel deployment followed by explicit verification of `unitrate-watch.vercel.app`. Do not assume a merged PR is live.
-
-The current public answer-engine bundle was deployed directly after preview validation. Production FAQ, `llms.txt`, `robots.txt`, and Neon connectivity were all verified afterward.
-
-A Vercel runtime health check showed one Node `url.parse()` deprecation warning associated with the Neon/serverless stack, but no observed functional failure. Do not prioritize this warning over acquisition unless it becomes an actual runtime error.
+During publication of PR #25, a stripped manual bundle briefly replaced the styled homepage. The regression was detected immediately and production was rebuilt from the complete current GitHub source. Full styling, guides, analytics, crawler files, and Neon APIs are verified restored. **Never use stripped/minimal deployment bundles.**
 
 ## Business
 
-UnitRate Watch is a consumer self-storage price-transparency utility for renters who receive a rate increase or suspect their current storage rent is materially above current market pricing.
+UnitRate Watch helps self-storage renters decide whether evidence favors **stay / negotiate / switch** after a rent increase or suspected above-market rate. The renter supplies facility/ZIP, unit size/type, current rent, and optional previous rent; UnitRate Watch owns the comparison work.
 
-**Core job to be done:**
+AI is operating leverage, not the customer promise.
 
-> Tell us what you pay and what kind of unit you have. We do the comparison work and tell you whether the evidence favors staying, negotiating, or switching.
-
-The renter should **not** have to research competitor rates before using the product.
-
-## Current acquisition / discovery assets
-
-### Main utility
+## Live acquisition / discovery assets
 
 - `/` — calculator + anonymous scan
+- `storage-rent-increase-faq.html` — answer-first FAQ with FAQ structured data
+- `storage-rent-increase-examples-2026.html` — **sourced 2026 public rate-increase examples**, added in PR #25
+- `storage-unit-rent-increase.html` — broad rent-increase guide
+- `storage-price-lock.html` — price stability / predictability
+- `nyc-extra-space-settlement.html` — timely official-settlement explainer
+- operator guides for Extra Space, Public Storage, CubeSmart
+- `llms.txt`, canonical URLs, sitemap, analytics, AI crawler policy
 
-### Answer-engine / broad-intent hub
+### Sourced examples page
 
-- `storage-rent-increase-faq.html`
-  - Is a storage rent increase normal?
-  - Why did it jump after only a few months?
-  - Is a 50%, 100%, or larger increase illegal?
-  - Why is the new-customer rate lower?
-  - Can I negotiate?
-  - Should I switch?
-  - How can I reduce surprise increases next time?
-
-### High-intent operator pages
-
-- `extra-space-storage-rate-increase.html`
-- `public-storage-rent-increase.html`
-- `cubesmart-rent-increase.html`
-
-### Broader acquisition pages
-
-- `storage-unit-rent-increase.html`
-- `storage-price-lock.html`
-- `nyc-extra-space-settlement.html`
-
-### Machine discovery
-
-- `sitemap.xml` includes current public pages and `lastmod` dates.
-- `llms.txt` lists canonical citation pages and interpretation/sourcing rules.
-- `robots.txt` supports normal search plus answer-engine retrieval while separating training crawler access.
-- IndexNow verification key is live.
-- `.github/workflows/indexnow.yml` is configured, but push-triggered execution could not be independently confirmed through the available GitHub connector. Do not report IndexNow submission as verified.
-- Google Search Console is not yet confirmed/configured.
+PR #25 uses recent public examples found on storage operators’ own facility/review pages, including reported changes such as $65→$130 after about two months and $109→$189 after about six months. It prominently states that these are **examples, not a representative sample or universal average**. No reviewer names or personal details are reproduced, and the page does not infer illegality. It is intended as a useful evidence/citation asset for renters, search engines, answer engines, journalists, and consumer-information publishers.
 
 ## Acquisition policy
 
 Use an **inbound-first / lead-them-to-water** strategy.
 
-Do not:
+Do not cold text, cold call, mass DM, scrape public complainers for private outreach, create fake accounts, manufacture community participation, or post promotional links where rules prohibit them. `r/selfstorage` explicitly bans business/service self-promotion unless moderators approve educational content first, so do not force Reddit.
 
-- cold text consumers
-- cold call consumers
-- send mass unsolicited DMs
-- scrape people who complain publicly and privately pitch them
-- create fake accounts or manufactured community participation
-- publish thin keyword pages simply to increase page count
+Preferred $0 channels:
+1. Search and answer-engine discovery.
+2. Helpful public participation only where rules permit it and the answer stands on its own.
+3. Timely/data-led consumer information tied to real questions or official developments.
+4. Earned links/citations from consumer, local, storage-industry, moving, housing, or personal-finance sources.
 
-Potentially acceptable acquisition:
-
-- genuinely useful public replies where community rules allow relevant self-reference
-- useful searchable answers to problem-triggered queries
-- earned citations/links from consumer, finance, storage, moving, housing, or local-information publishers
-- official/search indexing channels
-- organic public posts that transparently identify the tool when the human operator chooses to publish them
-
-Unsolicited commercial email is not automatically prohibited in the U.S., but CAN-SPAM compliance and reputation/operational overhead make cold consumer email a poor first channel for this experiment. Calls and texts carry materially more regulatory risk. Prefer inbound discovery unless evidence later justifies a carefully reviewed outbound channel.
+Cold commercial email is not automatically prohibited in the U.S., but CAN-SPAM compliance and reputation/operational overhead make it a poor first channel. Calls and texts carry materially more regulatory risk.
 
 ## Experiment thresholds
 
-**Success:** 8 qualified scan requests from the first 100 relevant visitors, and at least 2 scans lead to a concrete negotiate or switch action.
+**Success:** 8 qualified scans from first 100 relevant visitors, with at least 2 leading to concrete negotiate/switch action.  
+**Failure:** 200 relevant visitors with fewer than 3 qualified scans.
 
-**Failure:** 200 relevant visitors with fewer than 3 qualified scan requests.
-
-If the post-hike scan fails, test pre-rental price stability / predictability before abandoning the market.
+If post-hike diagnosis fails, test pre-rental price stability/predictability before abandoning the market. Do not interpret zero scans before measurable relevant traffic as rejection.
 
 ## Scoreboard
 
@@ -146,67 +87,62 @@ If the post-hike scan fails, test pre-rental price stability / predictability be
 | Expenses | $0 |
 | Treasury | $0 |
 
-## Issues / work state
+## Work state
 
-### Issue #6 — Acquisition experiment
+- Issue #6: **Acquisition experiment: first 100 relevant visitors** — open
+- Issue #7 analytics — complete
+- Issue #21 Vercel database environment — complete
+- PR #19 durable anonymous Vercel source — merged
+- PR #20 Vercel canonical rewrite — merged
+- PR #22 sitemap freshness — merged
+- PR #23 answer-engine discovery layer — merged and live
+- PR #24 AI crawler policy — merged and live
+- PR #25 sourced 2026 rate-increase examples — merged and live
 
-https://github.com/JessIsenhower/unitrate-watch/issues/6
+### Indexing
 
-Keep open until discovery/indexing has had a fair chance and relevant traffic reaches a meaningful denominator.
+- Production sitemap, robots, llms, canonical URLs, and IndexNow key are live.
+- `.github/workflows/indexnow.yml` exists, but push-triggered execution cannot be independently confirmed with the current GitHub connector. Do not report IndexNow submission as verified.
+- Google Search Console is not yet confirmed/configured.
+- No visible UnitRate Watch search footprint was observed immediately before the latest AEO/data-led additions. Allow a fair crawl window before drawing conclusions.
 
-### Completed
+## Next moves
 
-- Issue #7 analytics: complete
-- Issue #21 Vercel database environment: complete
-- PR #19 durable anonymous Vercel source
-- PR #20 canonical Vercel rewrite
-- PR #22 sitemap freshness
-- PR #23 answer-engine discovery layer
-- PR #24 AI search crawler policy
-
-## Next moves, in order
-
-1. Read the first real Vercel Analytics baseline and track relevant traffic from this point forward.
-2. Check conventional search and answer-engine discovery for the Vercel pages; do not interpret early non-indexing as market rejection.
-3. Improve only pages/internal links/metadata supported by observed query intent. Avoid content-volume theater.
-4. Acquire the first 100 relevant visitors ethically using inbound/public discovery channels.
+1. Read the first useful Vercel Analytics baseline and track relevant visitors.
+2. Establish Google Search Console indexing/query visibility if the human setup is worth the friction.
+3. Monitor conventional search and answer-engine discovery for the FAQ and sourced-examples page.
+4. Pursue earned/public distribution where channel rules permit it; do not spam.
 5. Query Neon for new scan submissions without creating fake requests.
-6. Fulfill first scans manually / AI-assisted and write the result to the private status page.
-7. Track outcome: stay, negotiate, or switch, and what evidence changed the decision.
-8. Automate repeated research only after recurring patterns are visible.
-9. Apply for one approved referral/affiliate program only after real switch intent is demonstrated.
+6. Fulfill first scans manually/AI-assisted and write results to private status pages.
+7. Track stay/negotiate/switch outcomes and what evidence changed the decision.
+8. Automate repeated research only after recurring patterns appear.
+9. Apply for one approved affiliate/referral program only after real switch intent is demonstrated.
 
 ## Operating guardrails
 
-- Initial operating treasury remains $0.
-- Do not buy a domain, API, dataset, ads, or software without explicit human approval.
-- Use `https://unitrate-watch.vercel.app` publicly. Do not socialize the owner-named GitHub Pages URL.
-- Keep database credentials only in secure environment-variable storage; never commit them or place them in public HTML.
-- Do not create fake/test customer submissions in production. Prefer read-only health checks.
-- When human action is required, provide a direct link to the exact page/tool needed.
-- Do not add AI features merely to make the site sound sophisticated.
-- Do not charge for basic rate checking during validation.
-- Do not claim a large rent increase is illegal merely because it is large.
-- Do not imply two units are comparable when meaningful differences remain unresolved.
-- Distinguish promotional pricing from durable pricing.
-- Do not scrape sources whose terms prohibit it.
-- Prefer operator-owned public pages, official government sources, approved partner feeds, licensed data, and voluntary user submissions.
-- Do not fabricate customers, testimonials, savings, rate histories, or rankings.
-- Do not create a price-stability/fairness score until the dataset can support it.
+- Treasury stays $0 unless human explicitly approves spending.
+- Do not buy a domain, API, dataset, ads, or software without approval.
+- Use `https://unitrate-watch.vercel.app` publicly; never socialize owner-named GitHub Pages.
+- Never commit database credentials or expose them in HTML.
+- No fake/test customer submissions in production; prefer read-only health checks.
+- When human action is required, provide a direct link to the exact page/tool.
+- No fake testimonials, customers, savings, histories, or rankings.
+- No legal claims based solely on increase size.
+- Distinguish promotions from durable pricing and normalize material unit/fee differences.
+- Do not scrape sources whose terms prohibit it; prefer operator-owned public pages, official government sources, approved feeds, licensed data, and voluntary submissions.
+- Do not create a price-stability/fairness score until the data supports it.
 
 ## Monetization
 
-Current product is free. First monetization hypothesis is clearly disclosed referral / affiliate revenue only when a renter independently decides switching is worthwhile.
+Current product is free. First monetization hypothesis is clearly disclosed referral/affiliate revenue only when a renter independently decides switching is worthwhile.
 
 ## Restart instruction
 
-When resuming autonomous operation:
-
 1. Read this file first.
-2. Verify the live Vercel deployment before assuming GitHub `main` is production.
-3. Check open issues and latest merged commits.
-4. Query Neon for new scan submissions without creating test/fake submissions.
-5. Review Vercel Analytics and search/answer-engine discovery evidence.
+2. Verify live Vercel production before assuming GitHub `main` is deployed.
+3. Check Issue #6 and latest merged commits.
+4. Query Neon for new scans without creating fake submissions.
+5. Review Vercel Analytics plus search/AEO evidence.
 6. Identify the single highest-leverage constraint.
-7. Execute one zero-cost action against that constraint.
-8. Update this handoff only when strategy, thresholds, product state, monetization, deployment state, or a major operating constraint materially changes.
+7. Execute one zero-cost action.
+8. Update this handoff only when strategy, thresholds, product/deployment state, monetization, or a major constraint materially changes.
