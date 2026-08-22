@@ -9,6 +9,7 @@ await fs.mkdir(out, { recursive: true });
 const entries = await fs.readdir(root, { withFileTypes: true });
 const analytics = `<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments);};</script><script defer src="/_vercel/insights/script.js"></script>`;
 const homepageSchema = `<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"UnitRate Watch","url":"https://unitrate-watch.vercel.app/","description":"Independent self-storage price-transparency utility for renters evaluating storage rent increases."},{"@type":"Organization","name":"UnitRate Watch","url":"https://unitrate-watch.vercel.app/","description":"Independent consumer self-storage price-transparency project."}]}</script>`;
+const googleVerification = `<meta name="google-site-verification" content="F22GblgskEVTowZtpIzbvoCyvRp4Gf5NTyn3bYo3pHs" />`;
 const oldScanUrl = 'https://github.com/JessIsenhower/unitrate-watch/issues/new?template=rate-scan.yml';
 const oldPublicBase = 'https://jessisenhower.github.io/unitrate-watch/';
 const publicBase = 'https://unitrate-watch.vercel.app/';
@@ -27,6 +28,7 @@ for (const entry of entries) {
     if (entry.name === 'index.html') {
       text = text.replace('<a href="#policies">Policies</a>', '<a href="storage-rent-increase-faq.html">FAQ</a><a href="#policies">Policies</a>');
       if (!text.includes('"@type":"WebSite"')) text = text.replace('</head>', `${homepageSchema}</head>`);
+      if (!text.includes('google-site-verification')) text = text.replace('</head>', `${googleVerification}</head>`);
     }
     if (entry.name !== 'status.html' && !text.includes('/_vercel/insights/script.js')) text = text.replace('</body>', `${analytics}</body>`);
   }
